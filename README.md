@@ -1,12 +1,13 @@
 # Getting Started with iNoteboook
 This project consists of two parts - **Client Side** and **Server Side** \
 Start this project by running
-### npm run both
+### `npm run both`
 ## Client Side
 It is created using create-react-app as base model and then eventually developing it up.
 ### Packages Used 
-    **cors** , **react-router-dom** and **concurrently**
+Used packages are **cors** , **react-router-dom** and **concurrently**
 ## Server Side
+Coming soon...
 <!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
