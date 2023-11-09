@@ -10,10 +10,11 @@ mongoose
     console.log(err);
   });
 
-const port = 4598;
+const port = 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+// app.use(express.text());
 
 app.get("/", (req, res) => {
   res.send("hi");

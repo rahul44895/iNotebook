@@ -4,7 +4,7 @@ const decodeToken = require("../middlewares/decodeToken");
 const { body, validationResult } = require("express-validator");
 const NotesSchema = require("../models/Notes");
 
-//adding a new note using POST api method. Login required
+// adding a new note using POST api method. Login required
 router.post(
   "/addNote",
   decodeToken,
@@ -13,6 +13,7 @@ router.post(
     body("description").isLength({ min: 3 }),
   ],
   async (req, res) => {
+    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
