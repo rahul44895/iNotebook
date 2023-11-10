@@ -27,7 +27,9 @@ export default function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
                   aria-current="page"
                   to="/"
                 >
@@ -36,7 +38,9 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${location.pathname === "/about" ? "active" : ""}`}
+                  className={`nav-link ${
+                    location.pathname === "/about" ? "active" : ""
+                  }`}
                   aria-current="page"
                   to="/about"
                 >
@@ -44,6 +48,14 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
+            <div className="d-flex">
+              <Link className="btn btn-primary mx-1" to='/login' role="button">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-1" to='/signup' role="button">
+                SignUp
+              </Link>
+            </div>
           </div>
         </div>
       </nav>

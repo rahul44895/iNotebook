@@ -18,7 +18,6 @@ export default function NoteItem(props) {
             <i
               className="fa-regular fa-pen-to-square m-2"
               onClick={() =>
-                // editNote(note._id, "MeowTitle267", note.description, note.tag)
                 updatenote(note)
               }
             ></i>

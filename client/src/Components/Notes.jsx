@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef , useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import noteContext from "../Context/notes/NoteContext";
 import AddNoteJS from "./AddNoteJS";
 import NoteItem from "./NoteItem";
@@ -11,7 +11,7 @@ export default function Notes() {
   }, []);
 
   const [newNotes, setNewNotes] = useState({
-    id : "",
+    id: "",
     etitle: "",
     edescription: "",
     etag: "",
@@ -21,17 +21,26 @@ export default function Notes() {
   const handleClick = (e) => {
     e.preventDefault();
     closeRef.current.click();
-    editNote(newNotes.id,newNotes.etitle, newNotes.edescription, newNotes.etag);
+    editNote(
+      newNotes.id,
+      newNotes.etitle,
+      newNotes.edescription,
+      newNotes.etag
+    );
   };
   const onChange = (e) => {
     setNewNotes({ ...newNotes, [e.target.name]: e.target.value });
   };
 
-
   const ref = useRef(null);
   const updatenote = (currNote) => {
     ref.current.click();
-    setNewNotes({id:currNote._id, etitle:currNote.title, edescription:currNote.description, etag:currNote.tag})
+    setNewNotes({
+      id: currNote._id,
+      etitle: currNote.title,
+      edescription: currNote.description,
+      etag: currNote.tag,
+    });
   };
   return (
     <>
@@ -109,7 +118,6 @@ export default function Notes() {
                     value={newNotes.etag}
                   />
                 </div>
-                
               </form>
             </div>
             <div className="modal-footer">
@@ -121,7 +129,12 @@ export default function Notes() {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleClick}
+                disabled={newNotes.etitle.length<5 || newNotes.edescription.length<5}
+              >
                 Update Note
               </button>
             </div>
@@ -130,6 +143,10 @@ export default function Notes() {
       </div>
 
       <div className="row m-3">
+        <div className="container my-3">
+          <h2>Your Notes</h2><br/>
+          {notes.length == 0 && "No notes to display"}
+        </div>
         {notes.map((note) => {
           return (
             <NoteItem
