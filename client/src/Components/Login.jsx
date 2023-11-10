@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   const host = "http://192.168.77.80:5000";
   let navigate = useNavigate();
 
@@ -25,9 +25,10 @@ const Login = () => {
     const json = await response.json();
     if (json.success == true) {
       localStorage.setItem("token", json.authToken);
+      props.setAlertText("Login Succesfull", "success");
       navigate("/");
     } else {
-      alert("Enter valid credentials");
+      props.setAlertText("Login Unsuccessfull", "danger");
     }
   };
   const onChange = (e) => {
@@ -47,6 +48,7 @@ const Login = () => {
             aria-describedby="emailHelp"
             name="email"
             onChange={onChange}
+            required
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -62,6 +64,7 @@ const Login = () => {
             id="exampleInputPassword1"
             name="password"
             onChange={onChange}
+            required
           />
         </div>
         {/* <div className="mb-3 form-check">
@@ -74,7 +77,7 @@ const Login = () => {
             Check me out
           </label>
         </div> */}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={credentials.email.length<5 || credentials.password.length<5}>
           Login
         </button>
       </form>

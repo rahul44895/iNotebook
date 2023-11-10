@@ -9,8 +9,8 @@ export default function Navbar() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" href="#">
-            Navbar
+          <Link className="navbar-brand" to="/">
+            iNotebook
           </Link>
           <button
             className="navbar-toggler"

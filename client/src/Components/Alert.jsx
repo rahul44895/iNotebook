@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
-export default function Alert() {
+export default function Alert({ alert }) {
   return (
-    <div className="alert alert-success" role="alert">
-  A simple success alert—check it out!
-</div>
-  )
+    <>
+      {alert && (
+        <div className={`alert alert-${alert.type}`} role="alert">
+          {alert.msg}
+        </div>
+      )}
+    </>
+  );
 }

@@ -3,7 +3,7 @@ import noteContext from "../Context/notes/NoteContext";
 import AddNoteJS from "./AddNoteJS";
 import NoteItem from "./NoteItem";
 
-export default function Notes() {
+export default function Notes(props) {
   const contextVal = useContext(noteContext);
   const { notes, getNotes, editNote } = contextVal;
   useEffect(() => {
@@ -27,6 +27,7 @@ export default function Notes() {
       newNotes.edescription,
       newNotes.etag
     );
+    props.setAlertText("Edited Successfully", "success");
   };
   const onChange = (e) => {
     setNewNotes({ ...newNotes, [e.target.name]: e.target.value });
@@ -44,7 +45,7 @@ export default function Notes() {
   };
   return (
     <>
-      <AddNoteJS />
+      <AddNoteJS setAlertText={props.setAlertText} />
 
       <button
         type="button"

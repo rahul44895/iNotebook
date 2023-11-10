@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const SignUp = () => {
+const SignUp = (props) => {
   const navigate = useNavigate();
   const host = "http://localhost:5000";
 
@@ -23,10 +23,12 @@ const SignUp = () => {
     });
     const json = await response.json();
     if (json.success) {
-      localStorage.setItem('token',json.authToken)
+      localStorage.setItem("token", json.authToken);
+      props.setAlertText("SignUp Successfull", "success");
       navigate("/");
     } else {
       alert("Email already registered");
+      props.setAlertText("SignUp UnSuccessfull", "danger");
     }
   };
   const onChange = (e) => {
@@ -45,6 +47,9 @@ const SignUp = () => {
             id="name"
             name="name"
             onChange={onChange}
+            required
+            required
+            minLength={5}
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" className="form-text">
@@ -62,6 +67,8 @@ const SignUp = () => {
             aria-describedby="emailHelp"
             name="email"
             onChange={onChange}
+            required
+            minLength={5}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -77,6 +84,8 @@ const SignUp = () => {
             id="exampleInputPassword1"
             name="password"
             onChange={onChange}
+            required
+            minLength={5}
           />
         </div>
 
