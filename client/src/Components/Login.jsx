@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  const host = "http://192.168.77.80:5000";
+  const host = "http://localhost:5000";
   let navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
@@ -25,6 +25,7 @@ const Login = (props) => {
     const json = await response.json();
     if (json.success == true) {
       localStorage.setItem("token", json.authToken);
+      localStorage.setItem("username", json.user);
       props.setAlertText("Login Succesfull", "success");
       navigate("/");
     } else {
@@ -36,6 +37,7 @@ const Login = (props) => {
   };
   return (
     <>
+    <h3 className="mt-3">Enter your details to login</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

@@ -43,7 +43,7 @@ router.post(
     };
     const authToken = JWT.sign(data, JWT_SECRET_KEY);
     success = true;
-    res.json({ success, authToken });
+    res.json({ success, authToken, user: user.name });
   }
 );
 //login a user using POST method. Login not required
@@ -51,6 +51,7 @@ router.post(
   "/login",
   [body("email").isEmail(), body("password").isLength({ min: 6 })],
   async (req, res) => {
+    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       success = false;
@@ -82,7 +83,7 @@ router.post(
     res.json({
       success: success,
       message: "Login Successfull",
-      user: req.body,
+      user: user.name,
       authToken: authToken,
     });
   }
